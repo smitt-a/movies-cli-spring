@@ -16,13 +16,13 @@ import static picocli.CommandLine.Command;
 
 @RequiredArgsConstructor
 @Component
-@Command(name = "ffmpegconverter", mixinStandardHelpOptions = true, defaultValueProvider = PropertiesDefaultProvider.class)
+@Command(name = "ffmpeg", mixinStandardHelpOptions = true)
 public class FfmpegCommand implements Runnable {
 
     private final FfmpegConverter ffmpegConverter;
 
-    @Option(names = {"-ffmpeg"}, description = "Ffmpeg executable path", defaultValue = "ffmpeg")
-    private String ffpmegExecutablePath;
+    @Option(names = {"-executable"}, description = "Ffmpeg executable path", defaultValue = "ffmpeg")
+    private Path ffpmegExecutablePath;
 
     @Parameters(paramLabel = "<inputFolder>", description = "Input folder containg .mkv files to convert", index = "0")
     private String inputFolder;
@@ -34,7 +34,7 @@ public class FfmpegCommand implements Runnable {
         try (var files = Files.list(Path.of(inputFolder))) {
             files
                     .filter(file -> file.getFileName().toString().endsWith(".mkv"))
-                    .forEach(file -> ffmpegConverter.convertEpisode(Path.of(ffpmegExecutablePath), file));
+                    .forEach(file -> ffmpegConverter.convertEpisode(ffpmegExecutablePath, file));
 
         } catch (Exception e) {
             throw new RuntimeException(e);

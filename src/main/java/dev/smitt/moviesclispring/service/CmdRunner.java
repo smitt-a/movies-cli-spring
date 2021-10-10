@@ -12,12 +12,12 @@ public class CmdRunner implements CommandLineRunner, ExitCodeGenerator {
 
     private int exitCode;
 
-    private final FfmpegCommand ffmpegCommand;
+    private final MainCommand mainCommand;
     private final CommandLine.IFactory factory;
 
     @Override
     public void run(String... args) {
-        exitCode = new CommandLine(ffmpegCommand, factory).execute(args);
+        exitCode = new CommandLine(mainCommand, factory).execute(args);
     }
 
     @Override
