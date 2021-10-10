@@ -1,5 +1,6 @@
 package dev.smitt.moviesclispring.service;
 
+import dev.smitt.moviesclispring.util.Log;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.exec.CommandLine;
@@ -22,7 +23,7 @@ public class FfmpegConverter {
     private final Executor commandExecutor;
 
     public void convertEpisode(Path ffpmegExecutable, Path inputFile) {
-        System.out.println("Converting episode: " + inputFile);
+        Log.info("Converting episode: " + inputFile);
         var originalFileName = inputFile.getFileName().toString();
         var matcher = EPISODE_PATTERN.matcher(originalFileName);
         Path destination;

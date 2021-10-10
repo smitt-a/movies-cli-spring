@@ -1,6 +1,7 @@
 package dev.smitt.moviesclispring.service;
 
 import com.google.common.base.Stopwatch;
+import dev.smitt.moviesclispring.util.Log;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -41,7 +42,7 @@ public class FfmpegCommand implements Runnable {
 
         var elapsed = sw.elapsed();
 
-        System.out.println("ffmpeg processing duration: " + elapsed);
+        Log.info("ffmpeg processing duration: " + elapsed);
     }
 
 }
